@@ -1,0 +1,79 @@
+{
+  "godowns": [
+    {
+      "id": 1,
+      "location": "Chennai",
+      "capacity_in_quintals": 5,
+      "manager_id": 12333,
+      "start_date": "24/03/12"
+    },
+    {
+      "id": 1,
+      "location": "Hydrabad",
+      "capacity_in_quintals": 5,
+      "manager_id": 22222,
+      "start_date": "24/03/12"
+    },
+    {
+      "id": 1,
+      "location": "Pune",
+      "capacity_in_quintals": 5,
+      "manager_id": 33333,
+      "start_date": "24/03/12"
+    },
+    {
+      "name": "Volvo carName",
+      "email": "vibhuterutuja5@gmail.com",
+      "password": "sasssss",
+      "date": "",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "location": "",
+      "capacity_in_quintals": "",
+      "manager_id": " ",
+      "date": ""
+    },
+    {
+      "id": 4,
+      "location": "",
+      "capacity_in_quintals": "",
+      "manager_id": "",
+      "date": ""
+    },
+
+
+   
+    {
+      "id": 8,
+      "location": "",
+      "capacity_in_quintals": "",
+      "manager_id": " ",
+      "date": ""
+    },
+  
+    {
+      "id": 10,
+      "location": "",
+      "capacity_in_quintals": "",
+      "manager_id": "",
+      "date": ""
+    },
+    {
+      "id": 11,
+      "location": "",
+      "capacity_in_quintals": "",
+      "manager_id": "",
+      "date": ""
+    },
+    {
+      "id": 12,
+      "location": "",
+      "capacity_in_quintals": "",
+      "manager_id": "",
+      "date": ""
+    }
+  
+  ]
+}
