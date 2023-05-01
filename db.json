@@ -42,9 +42,6 @@
       "manager_id": "",
       "date": ""
     },
-
-
-   
     {
       "id": 8,
       "location": "",
@@ -52,7 +49,6 @@
       "manager_id": " ",
       "date": ""
     },
-  
     {
       "id": 10,
       "location": "",
@@ -74,6 +70,161 @@
       "manager_id": "",
       "date": ""
     }
-  
-  ]
+  ],
+
+  "inwards": [
+    {
+      "id": 1,
+      "product_id": 111,
+      "godown_id": "g12",
+      "customer_name": "Ruhi",
+      "supply_date": "22/03/2022",
+      "delivery_date": "22/03/2022",
+      "purpose": "abc",
+      "receipt_no": 123,
+      "delivered_to": "xyz"
+    },
+    {
+      "id": 2,
+      "product_id": 222,
+      "godown_id": "g12",
+      "customer_name": "abc",
+      "supply_date": "22/03/2022",
+      "delivery_date": "22/03/2022",
+      "purpose": "def",
+      "receipt_no": 123,
+      "delivered_to": "xyz"
+    },
+    {
+      "id": 3,
+      "product_id": 333,
+      "godown_id": "g12",
+      "customer_name": "fgh",
+      "supply_date": "22/03/2022",
+      "delivery_date": "22/03/2022",
+      "purpose": "xyz",
+      "receipt_no": 123,
+      "delivered_to": "xyz"
+    },
+    {
+    "id": 8,
+    "product_id": 333,
+    "godown_id": "g12",
+    "customer_name": "Ruhi@123",
+    "supply_date": "22/03/2022",
+    "delivery_date": "22/03/2022",
+    "purpose": "xyz",
+    "receipt_no": 123,
+    "delivered_to": "xyz"
+  },
+  {
+    "id": 12,
+    "product_id": 333,
+    "godown_id": "g12",
+    "customer_name": "Ruhi",
+    "supply_date": "22/03/2022",
+    "delivery_date": "22/03/2022",
+    "purpose": "xyz",
+    "receipt_no": 123,
+    "delivered_to": "xyz"
+  },
+  {
+    "id": 32,
+    "product_id": 333,
+    "godown_id": "g12",
+    "customer_name": "Ruhi",
+    "supply_date": "22/03/2022",
+    "delivery_date": "22/03/2022",
+    "purpose": "xyz",
+    "receipt_no": 123,
+    "delivered_to": "xyz"
+  }
+  ],
+
+  "employees":[{
+    "id": 1,
+    "name":"xyz",
+    "userName":"@xyz",
+    "role":"manager",
+     "roleId":12
+
+  },
+  {
+  "id": 2,
+  "name":"xyz",
+  "userName":"@xyz",
+  "role":"manager",
+  "roleId":12
+  },
+  {
+    "id": 3,
+    "name":"xyz",
+    "userName":"@xyz",
+    "role":"manager",
+     "roleId":12
+
+  },
+  {
+  "id": 4,
+  "name":"xyz",
+  "userName":"@xyz",
+  "role":"manager",
+  "roleId":12
+  },
+  {
+    "id": 5,
+    "name":"xyz",
+    "userName":"@xyz",
+    "role":"manager",
+     "roleId":12
+
+  },
+  {
+  "id": 6,
+  "name":"xyz",
+  "userName":"@xyz",
+  "role":"manager",
+  "roleId":12
+  }
+
+
+],
+"outwards": [
+  {
+    "id": 1,
+    "product_id": 111,
+    "godown_id": "g1",
+    "invoice_id": "111g1",
+    "supply_date": "22/03/2022",
+    "delivery_date": "22/03/2022",
+    "purpose": "abc",
+    "receipt_no": 123,
+    "delivered_to": "abc"
+  },
+  {
+    "id": 2,
+    "product_id": 222,
+    "godown_id": "g2",
+    "invoice_id": "222g2",
+    "supply_date": "23/03/2022",
+    "delivery_date": "23/03/2022",
+    "purpose": "abc",
+    "receipt_no": 123,
+    "delivered_to": "def"
+
+  },
+
+  {
+    "id": 3,
+    "product_id": 333,
+    "godown_id": "g3",
+    "invoice_id": "333g3",
+    "supply_date": "24/03/2022",
+    "delivery_date": "24/03/2022",
+    "purpose": "abc",
+    "receipt_no": 123,
+    "delivered_to": "ghi"
+
+  }
+]
 }
