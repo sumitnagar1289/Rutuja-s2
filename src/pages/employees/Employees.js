@@ -1,5 +1,7 @@
+
+
 import React, { useState } from 'react'
-import EmployeeForm from "./EmployeeForm";
+import EmployeesForm from './EmployeeForm';
 import axios from 'axios'
 import { useEffect } from 'react';
 import Popup from '../../Components/Popup';
@@ -21,35 +23,43 @@ const useStyles = makeStyles(theme => ({
     searchInput: {
         width: '75%'
     },
-    newButton:{
-        position:'absolute',
-        right:'10px'
+    newButton: {
+        position: 'absolute',
+        right: '10px'
     }
 }))
 
 
 const headCells = [
-    { id: 'name', label: 'Employee Name' },
-    { id: 'username', label: 'userName' },
-    { id: 'role', label: 'Role' },
-    { id: 'department', label: 'Department' },
+    // { id: 'product_id', label: 'Product ID' },
+  
+    { id: 'employee_name', label: 'Employee Name' },
+   
+    { id: 'employee_username', label: 'Employee Username' },
+    { id: 'role_id', label: 'Employee Role ID' },
+    
+    { id: 'role', label: 'Employee Role' },
+    // {id:'employee_password',label:'password'},
+   
     { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
 export default function Employees() {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const classes = useStyles();
-    const [records, setRecords] = useState(employeeService.getAllEmployees())
+    const [records, setRecords] = useState([])
     const [filterFn, setFilterFn] = useState({ fn: items => { return items; } })
-   const [openPopup, setOpenPopup] = useState(false)
-   const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' })
-   const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: '', subTitle: '' })
+    const [openPopup, setOpenPopup] = useState(false)
+    const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' })
+    const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: '', subTitle: '' })
     const {
         TblContainer,
         TblHead,
         TblPagination,
         recordsAfterPagingAndSorting
     } = useTable(records, headCells, filterFn);
+
+
 
     const handleSearch = e => {
         let target = e.target;
@@ -58,7 +68,7 @@ export default function Employees() {
                 if (target.value === "")
                     return items;
                 else
-                    return items.filter(x => x.name.toLowerCase().includes(target.value))
+                    return items.filter(x => x.product_id.toLowerCase().includes(target.value))
             }
         })
     }
@@ -81,9 +91,9 @@ export default function Employees() {
         setRecordForEdit(item)
         setOpenPopup(true)
     }
-    const onDelete=id=>{
-        if(('Are you sure to delete this record'))
-        employeeService.deleteEmployee(id);
+    const onDelete = id => {
+        if (('Are you sure to delete this record'))
+            employeeService.deleteEmployee(id);
         setRecords(employeeService.getAllEmployees())
         setNotify({
             isOpen: true,
@@ -91,18 +101,42 @@ export default function Employees() {
             type: 'error'
         })
     }
-    const [data,setData]=useState([])
-useEffect(()=>{
-    axios.get('http://localhost:3030/employees')
-    .then(res=>setData(res.data))
-    .catch(err => console.log(err))
-},
-[])
+
+
+    const [data, setData] = useState([])
+    useEffect(() => {
+
+        axios.get('http://localhost:8080/api/employees', {
+
+        })
+            .then(res => {
+
+                let rows = [];
+                for (let i = 0; i < res.data.length; i++) {
+                    let item = res.data[i];
+                    let obj = {
+                        employee_name: item.name,
+                        employee_password:item.password,
+                        role: item.role.role,
+                        employee_username: item.username,
+                        role_id: item.role.id,
+                        id: item.id
+                    }
+                    rows.push(obj)
+
+                }
+                setRecords(rows)
+            }
+            )
+            .catch(err => console.log(err))
+    },
+        [])
+
     return (
         <>
-          
+
             <Paper className={classes.pageContent}>
-               
+
                 <Toolbar>
                     <Controls.Input
                         label="Search Employees"
@@ -113,14 +147,14 @@ useEffect(()=>{
                             </InputAdornment>)
                         }}
                         onChange={handleSearch}
-                        
+
                     />
                     <Controls.Button
-                    text="Add New"
-                    variant="outlined"
-                    startIcon={<AddIcon/>}
-                    className={classes.newButton}
-                    onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
+                        text="Add New"
+                        variant="outlined"
+                        startIcon={<AddIcon />}
+                        className={classes.newButton}
+                        onClick={() => { setOpenPopup(true); setRecordForEdit(null); }}
                     />
                 </Toolbar>
                 <TblContainer>
@@ -128,36 +162,33 @@ useEffect(()=>{
                     <TableBody>
                         {
                             recordsAfterPagingAndSorting().map(item =>
-                                (<TableRow key={item.id}>
-                                    <TableCell>{item.name}</TableCell>
-                                    <TableCell>{item.userName}</TableCell>
-                                    <TableCell>{item.role}</TableCell>
-                                    <TableCell>{item.roleId}</TableCell>
-                                    <TableCell>
-                                        <Controls.ActionButton 
-                                        
-                                       
+                            (<TableRow key={item.id}>
 
-                                       
+                                <TableCell>{item.employee_name}</TableCell>
+                                <TableCell>{item.employee_username}</TableCell>
+                                <TableCell>{item.role_id}</TableCell>
+                                <TableCell>{item.role}</TableCell>
+                                {/* <TableCell>{item.password}</TableCell> */}
 
-                                     
-                                            onClick={() => { openInPopup(item) }}>
-                                            <EditOutlinedIcon fontSize="small"  />
-                                        </Controls.ActionButton>
-                                        <Controls.ActionButton
+                                <TableCell>
+                                    <Controls.ActionButton
+                                        onClick={() => { openInPopup(item) }}>
+                                        <EditOutlinedIcon fontSize="small" />
+                                    </Controls.ActionButton>
+                                    <Controls.ActionButton
                                         //    color="secondary"
-                                            onClick={() => {
-                                                setConfirmDialog({
-                                                    isOpen: true,
-                                                    title: 'Are you sure to delete this record?',
-                                                    subTitle: "You can't undo this operation",
-                                                    onConfirm: () => { onDelete(item.id) }
-                                                })
-                                            }}>
-                                            <CloseIcon fontSize="small" />
-                                        </Controls.ActionButton>
-                                    </TableCell>
-                                </TableRow>)
+                                        onClick={() => {
+                                            setConfirmDialog({
+                                                isOpen: true,
+                                                title: 'Are you sure to delete this record?',
+                                                subTitle: "You can't undo this operation",
+                                                onConfirm: () => { onDelete(item.id) }
+                                            })
+                                        }}>
+                                        <CloseIcon fontSize="small" />
+                                    </Controls.ActionButton>
+                                </TableCell>
+                            </TableRow>)
                             )
                         }
                     </TableBody>
@@ -165,20 +196,28 @@ useEffect(()=>{
                 <TblPagination />
             </Paper>
             <Popup openPopup={openPopup}
-            setOpenPopup={setOpenPopup}>
-            <EmployeeForm 
-            recordForEdit={recordForEdit}
-            addOrEdit={addOrEdit} />
-            
+                setOpenPopup={setOpenPopup}>
+                <EmployeesForm
+                    recordForEdit={recordForEdit}
+                    addOrEdit={addOrEdit}
+                    setRecords={setRecords}
+                    records={records}
+                    setNotify={setNotify}
+                    setOpenPopup={setOpenPopup}
+                />
+
+
             </Popup>
             <Notification
                 notify={notify}
                 setNotify={setNotify}
+
             />
-               <ConfirmDialog
+            <ConfirmDialog
                 confirmDialog={confirmDialog}
                 setConfirmDialog={setConfirmDialog}
             />
         </>
     )
 }
+
