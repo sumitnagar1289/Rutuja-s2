@@ -1,0 +1,26 @@
+{
+    "employees": [
+      {
+        "id": 1,
+        "name": "John Doe",
+        "userName": "johndoe",
+        "role": "Developer",
+        "roleId": 1
+      },
+      {
+        "id": 2,
+        "name": "Jane Doe",
+        "userName": "janedoe",
+        "role": "Designer",
+        "roleId": 2
+      },
+      {
+        "id": 3,
+        "name": "Bob Smith",
+        "userName": "bobsmith",
+        "role": "Manager",
+        "roleId": 3
+      }
+    ]
+  }
+  

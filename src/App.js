@@ -10,6 +10,7 @@ import ContextProvider from './context/ContextProvider';
 import DashboardLayout from './pages/DashboardLayout';
 import Godowns from './pages/dashboard/godowns/Godowns';
 import CustomizedDialogs from './pages/dashboard/godowns/Godowns';
+import Returns from './pages/dashboard/returns/Returns';
 
 function App() {
   
@@ -23,6 +24,9 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="employees" element={<Employees />} />
           <Route path ="godowns" element={<Godowns/>}/>
+          <Route path ="returns" element={<Returns/>}/>
+          {/* <Route  path="inwards" element={<Inwards />}/>
+          <Route  path="outwards" element={<Outwards />}/> */}
             {/* <Route path="home" element={<Home/>}/> */}
           </Route>
         </Routes>
@@ -34,6 +38,7 @@ function App() {
      </ContextProvider>
   )
 }
+//helo
 
 export default App
 

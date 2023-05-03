@@ -1,0 +1,32 @@
+{
+  "returns": [
+    {
+        "id": 1,
+        "itemName": "Product A",
+        "dateOfDelivery": "2022-04-01",
+        "dateOfReturn": "2022-04-05",
+        "returnGodownId": "G001",
+        "quantity": 10,
+        "invoiceNo": "INV001",
+        "returnedBy": "John Doe",
+        "receiptNo": "R001",
+        "billValue": 500.00,
+        "checkedBy": "Jane Smith",
+        "reasonForReturn": "damage"
+      },
+      {
+        "id": 2,
+        "itemName": "Product B",
+        "dateOfDelivery": "2022-04-02",
+        "dateOfReturn": "2022-04-06",
+        "returnGodownId": "G002",
+        "quantity": 5,
+        "invoiceNo": "INV002",
+        "returnedBy": "Jane Doe",
+        "receiptNo": "R002",
+        "billValue": 250.00,
+        "checkedBy": "John Smith",
+        "reasonForReturn": "order cancelled"
+      }
+  ]
+}

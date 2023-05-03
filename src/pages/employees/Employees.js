@@ -81,23 +81,38 @@ export default function Employees() {
         setRecordForEdit(item)
         setOpenPopup(true)
     }
-    const onDelete=id=>{
-        if(('Are you sure to delete this record'))
+  
+    const onDelete = (id) => {
         employeeService.deleteEmployee(id);
-        setRecords(employeeService.getAllEmployees())
+        setRecords(employeeService.getAllEmployees());
         setNotify({
-            isOpen: true,
-            message: 'Deleted Successfully',
-            type: 'error'
-        })
-    }
+          isOpen: true,
+          message: 'Deleted Successfully',
+          type: 'error'
+        });
+        setConfirmDialog({  // Close the confirmation dialog
+          ...confirmDialog,
+          isOpen: false
+        });
+      };
+      
     const [data,setData]=useState([])
-useEffect(()=>{
-    axios.get('http://localhost:3030/employees')
-    .then(res=>setData(res.data))
-    .catch(err => console.log(err))
-},
-[])
+    useEffect(() => {
+        async function fetchData() {
+          const response = await fetch('http://localhost:4004/employees');
+          const data = await response.json();
+          setData(data);
+        }
+        fetchData();
+      }, []);
+    // useEffect(()=>{
+    //     axios.get('http://localhost:4004/employees')
+    //     .then(res => {
+    //         console.log(res.data);
+    //     })
+    //     .catch(err => console.log(err))
+    // },
+    // [])
     return (
         <>
           
