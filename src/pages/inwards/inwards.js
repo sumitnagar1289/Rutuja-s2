@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import OutwardsForm from "./outwardsForm";
+import InwardsForm from "./inwardsForm";
 import axios from 'axios'
 import { useEffect } from 'react';
 import Popup from '../../Components/Popup';
@@ -31,12 +31,10 @@ const useStyles = makeStyles(theme => ({
 const headCells = [
     { id: 'product_id', label: 'Product ID' },
     { id: 'godown_id', label: 'Godown ID' },
+    { id: 'receivedFrom_id', label: 'Received From ID' },
+    { id: 'supply_date', label: 'Supply Date' }, 
     { id: 'invoice_id', label: 'Invoice ID' },
-    { id: 'supply_date', label: 'Supply Date' },
-    { id: 'delivery_date', label: 'Delivery Date' },
-    { id: 'purpose', label: 'Purpose' },
     { id: 'receipt_no', label: 'Receipt No' },
-    { id: 'delivered_to', label: 'Delivered To' },
     { id: 'actions', label: 'Actions', disableSorting: true }
 ]
 
@@ -55,10 +53,7 @@ export default function Employees() {
         recordsAfterPagingAndSorting
     } = useTable(records, headCells, filterFn);
 
-    async function getOutwardsData() {
-        let res = await axios.get('http://localhost:5000/outwards')
-        setRecords(res.data);
-    }
+
 
     const handleSearch = e => {
         let target = e.target;
@@ -101,10 +96,11 @@ export default function Employees() {
         })
     }
 
+   
     const [data, setData] = useState([])
     useEffect(() => {
 
-        axios.get('http://localhost:8080/api/outwards', {
+        axios.get('http://localhost:8080/api/inwards', {
             
         })
             .then(res => {
@@ -117,12 +113,10 @@ export default function Employees() {
                         godown_id: item.godown.id,
                         product_id: item.product.id,
                         invoice_id: item.invoice.id,
-                        delivery_date:item.deliveryDate,
+                        receivedFrom_id:item.invoice.billCheckedBy.id,
                         supply_date:item.supplyDate,
                         receipt_no:item.receiptNo,
-                        id:item.id,
-                        purpose:item.purpose,
-                        delivered_to:item.deliveredTo
+                        id:item.id
                     }
                     rows.push(obj)
 
@@ -133,8 +127,7 @@ export default function Employees() {
             .catch(err => console.log(err))
     },
         [])
-
-
+        
     return (
         <>
 
@@ -142,7 +135,7 @@ export default function Employees() {
 
                 <Toolbar>
                     <Controls.Input
-                        label="Search Outwards"
+                        label="Search Inwards"
                         className={classes.searchInput}
                         InputProps={{
                             startAdornment: (<InputAdornment position="start">
@@ -168,12 +161,12 @@ export default function Employees() {
                             (<TableRow key={item.id}>
                                 <TableCell>{item.product_id}</TableCell>
                                 <TableCell>{item.godown_id}</TableCell>
-                                <TableCell>{item.invoice_id}</TableCell>
+                                <TableCell>{item.receivedFrom_id}</TableCell>
                                 <TableCell>{item.supply_date}</TableCell>
-                                <TableCell>{item.delivery_date}</TableCell>
-                                <TableCell>{item.purpose}</TableCell>
+                                {/* <TableCell>{item.delivery_date}</TableCell> */}
+                                <TableCell>{item.invoice_id}</TableCell>
                                 <TableCell>{item.receipt_no}</TableCell>
-                                <TableCell>{item.delivered_to}</TableCell>
+                                {/* <TableCell>{item.delivered_to}</TableCell> */}
                                 <TableCell>
                                     <Controls.ActionButton
                                         onClick={() => { openInPopup(item) }}>
@@ -201,14 +194,14 @@ export default function Employees() {
             </Paper>
             <Popup openPopup={openPopup}
                 setOpenPopup={setOpenPopup}>
-                <OutwardsForm
+                <InwardsForm
                     recordForEdit={recordForEdit}
-                    addOrEdit={addOrEdit} 
+                    addOrEdit={addOrEdit}
                     setRecords={setRecords}
                     records={records}
                     setNotify={setNotify}
                     setOpenPopup={setOpenPopup}
-                    />
+                />
 
 
             </Popup>
@@ -223,14 +216,4 @@ export default function Employees() {
             />
         </>
     )
-<<<<<<< HEAD
-};
-export default outwards;
-
-
-
-
-
-=======
 }
->>>>>>> ec136b50e243e7067c6b7c3e989189ab7b343461

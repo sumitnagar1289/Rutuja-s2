@@ -295,8 +295,12 @@ export default function OutwardsForm(props) {
             </Grid>
         </Form>
     )
+<<<<<<< HEAD
 }
 
 
 
 
+=======
+}
+>>>>>>> ec136b50e243e7067c6b7c3e989189ab7b343461
